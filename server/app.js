@@ -6,15 +6,17 @@ const app = express();
 
 //DataBase
 dotenv.config({path:'./config.env'});
-const DB =process.env.DATABASE;
+require('./db/conn')
+const User=require('./model/userSchema');
+const port=process.env.PORT;
 
 //connect
-mongoose
-  .connect(DB)
-  .then(() => {
-    console.log("connection successful");
-  })
-  .catch((err) => console.log(err));
+// mongoose
+//   .connect(DB)
+//   .then(() => {
+//     console.log("connection successful");
+//   })
+//   .catch((err) => console.log(err));
 
 //middeleware
 
@@ -42,8 +44,8 @@ app.get("/signin", (req, res) => {
 app.get("/signup", (req, res) => {
   res.send("hello mern login");
 });
-app.listen(3000, () => {
-  console.log("server is running");
+app.listen(port, () => {
+  console.log("server is running"+port);
 });
 
 console.log(4565);
